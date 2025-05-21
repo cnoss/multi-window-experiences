@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic concepts of sharing data between browser windows</title>
+
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/base.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+  <script src="scripts/addMarkdownSupport.js"></script>
+
+</head>
+
+<body>
+  <header>
+    <h1>What are the different concepts and techniques for sharing window position data between browser windows?</h1>
+    <p>In this example, we will explore how to share data between different browser windows.</p>
+  </header>
+
+  <section>
+    <h2>Table of Contents</h2>
+    <ul>
+      <li><a href="#window-position">Detecting Window Position</a></li>
+      <li><a href="#observe-window-position">Observe Window Position Changes</a></li>
+      <li><a href="#opener">Using Opener</a></li>
+      <li><a href="#post-message">Using PostMessage</a></li>
+      <li><a href="#local-storage">Using Local Storage</a></li>
+      <li><a href="#shared-worker">Using Shared Worker</a></li>
+    </ul>
+  </section>
+
+  <section id="window-position">
+    <h2>Detecting Window Position</h2>
+    <p>To detect the position of a window, you can use the <code>window.screenX</code> and <code>window.screenY</code>
+      properties. These properties return the x and y coordinates of the window on the screen.</p>
+    <p>For example, you can log the position of the current window to the console:</p>
+    <pre><code>console.log('Window position:', window.screenX, window.screenY);</code></pre>
+    <p>This will output the x and y coordinates of the window in pixels.</p>
+  </section>
+
+  <section id="observe-window-position">
+    <h2>Observe Window Position Changes</h2>
+    <p>In modern browsers, you can't directly track changes to the browser window's position on the screen due to
+      security and privacy restrictions. However, there is a partial workaround using the window.screenX and
+      window.screenY properties. These give you the x and y coordinates of the window relative to the user's screen.</p>
+
+    <p>You can monitor changes by polling these values at regular intervals. For example, you could use setInterval to
+      check every 500 milliseconds whether the values have changed, and then react accordingly. That said, this only
+      works reliably in popup windows or controlled browser environments. In normal browser tabs, these properties may
+      return zero or be blocked entirely depending on the browser and the platform. Some browsers also limit access to
+      this information altogether for security reasons.</p>
+
+    <p>If you're building something that needs to detect repositioning, consider whether you can achieve your goal
+      another way — for instance, by monitoring viewport size, scroll behavior, or window focus/blur events. Let me know
+      what you're trying to build, and I can help you find a more robust approach.</p>
+
+
+    <p>The window and screen objects in JavaScript offer several useful properties that can help you understand and
+      respond to the browser window's behavior or environment—especially if you're working on something related to
+      window positioning or resizing.</p>
+
+    <h3>Useful window Properties</h3>
+    <code>window.innerWidth / window.innerHeight</code>
+    <p>
+      Returns the viewport size (the visible area inside the window, excluding toolbars and scrollbars).
+      → Useful for responsive design or checking if the window is minimized or resized.
+    </p>
+
+    <h3>window.outerWidth / window.outerHeight</h3>
+    <p>
+      Gives the full size of the browser window, including borders and toolbars.
+      → Helps detect the total window dimensions, including chrome.
+    </p>
+
+    <code>window.screenX / window.screenY</code>
+    <p>
+      Returns the position of the window relative to the screen.
+      → Handy for limited window movement tracking.
+    </p>
+
+    <code>window.devicePixelRatio</code>
+    <p>
+      Indicates the pixel density (e.g., Retina displays have a ratio > 1).
+      → Useful when working with graphics or high-DPI support.
+    </p>
+
+    <code>window.screenLeft / window.screenTop</code>
+    <p>
+      Similar to screenX / screenY, more relevant for compatibility with older browsers.
+      → Be cautious — support is inconsistent.
+    </p>
+
+    <h3>Useful screen Properties</h3>
+    <code>screen.width / screen.height</code>
+    <p>
+      Returns the total screen resolution (e.g., 1920×1080).
+      → Helps understand screen context or scale window sizes accordingly.
+    </p>
+
+    <code>screen.availWidth / screen.availHeight</code>
+    <p>
+      Gives the available screen size, excluding system UI like taskbars.
+      → Useful for centering popups or maximizing windows within usable space.
+    </p>
+  </section>
+
+  <section id="opener">
+    <h2>Using Opener</h2>
+    <p>The <code>opener</code> property allows a window to reference the window that opened it. This is useful for
+      sharing data between windows. For example, if you have a main window that opens a new window, you can use the <code>opener</code> property to
+      access the main window's properties and methods.</p>
+
+    <button class="mv-xl"><a href="window-opener-demo/parent.html" target="_blank">Window Opener Demo</a></button>
+  </section>
+
+  <section id="post-message">
+    <h2>Using PostMessage</h2>
+    <p data-js-markdownit>The `postMessage` method allows you to send messages between windows. This is useful for sharing data
+      between windows that are not related (i.e., they do not share the same opener).</p>
+
+    <button class="mv-xl"><a href="post-message-demo/index.html" target="_blank">Post Message Demo</a></button>
+    
+  </section>
+
+  <section id="local-storage">
+    <h2>Using Local Storage</h2>
+    <p data-js-markdownit>The `localStorage` object allows you to store data in the browser. This is useful for sharing data
+      between windows that are not related (i.e., they do not share the same opener). The data is **synchronous** and **string-based** (you store and retrieve strings only) and it doesn’t expire.</p>
+
+    <button class="mv-xl"><a href="local-storage-demo/index.html" target="_blank">Local Storage Demo</a></button>
+  </section>
+
+  <section id="shared-worker">
+    <h2>Using Shared Worker</h2>
+    <p data-js-markdownit>The `SharedWorker` object allows you to create a worker that can be shared between multiple windows. This is useful for sharing data between windows that are not related (i.e., they do not share the same opener). The data is **asynchronous** and **string-based** and it doesn’t expire.</p>
+
+    <button class="mv-xl"><a href="shared-worker-demo/index.html" target="_blank">Shared Worker Demo</a></button>
+  </section>
+
+  <footer data-js-footer></footer>
+
+  <script>
+    const windowPosition = {
+      x: window.screenX,
+      y: window.screenY
+    }
+
+    const trackWindowPosition = () => {
+
+      if (windowPosition.x === window.screenX && windowPosition.y === window.screenY) {
+        return;
+      }
+      windowPosition.x = window.screenX;
+      windowPosition.y = window.screenY;
+
+      const footer = document.querySelector('[data-js-footer]');
+      footer.innerHTML = `<p>Window position: ${windowPosition.x}, ${windowPosition.y}</p>`;
+    }
+
+    const obverveWindowPosition = setInterval(trackWindowPosition, 500);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+/* Logger
+############################################################################ */
+
+.logger {
+  display: block;
+  padding: var(--size-m) var(--fluid-size-s);
+  background-color: var(--color-darker);
+  font-family: var(--ff-mono);
+  font-size: var(--size-s);
+
+  border-radius: var(--radius-m);
+  border: solid var(--color-green) var(--border-width);
+
+  width: 100%;
+  height: calc(var(--fluid-size-m) * 10);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
+/* Logger Grid
+############################################################################ */
+
+.logger-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(16em,1fr));
+  gap: var(--size-s);
+  margin-top: var(--fluid-size-xl);
+}
+
+
+/* Header & Navigation
+############################################################################ */
+
+.main-header{
+  display: flex;
+
+  .title{
+    flex: 2;
+  }
+
+  .main-navigation{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    button{
+      margin-left: var(--size-s);
+      padding: var(--size-xs) var(--size-s);
+      background-color: var(--color-darker);
+      font-size: var(--size-s);
+      color: var(--color-lightest);
+      border-radius: var(--radius-l);
+      border: solid var(--color-pink) var(--border-width);
+      cursor: pointer;
+      line-height: var(--lh-normal);
+      transition: background-color var(--tr-fast), border-radius var(--tr-fast);
+
+      &:hover{
+        background-color: var(--color-pink);
+        border-radius: var(--radius-m);
+      }
+    }
+  }
+}
+
+/* Positioning
+############################################################################ */
+
+.position-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(3,1fr);
+  height: 60px;
+  width: 60px;
+  margin-left: var(--fluid-size-s);
+
+  .grid-cell{
+    background-color: var(--color-darker);
+    border: solid var(--color-darkest) 1px;
+    width: 100%;
+    height: 100%;
+
+    &:hover{
+      background-color: var(--color-pink);
+      border-radius: var(--radius-m);
+      cursor: pointer;
+    }
+  }
+}

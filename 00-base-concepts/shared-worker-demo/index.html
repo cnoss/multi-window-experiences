@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SharedWorker Demo</title>
+
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/base.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+  <script>hljs.highlightAll(); hljs.initLineNumbersOnLoad();</script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+  <script src="../scripts/addMarkdownSupport.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Shared Worker Demo</h1>
+    <h2 class="subtitle">I'm a new Window</h2>
+  
+    <p class="hero-text" data-js-markdownit>A [SharedWorker](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker) is a type of [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Work_Workers_API) that allows **multiple browser contexts** (like tabs, windows, or iframes) from the **same origin** to communicate with a **single shared script** running in the background.</p>
+
+    <p data-js-markdownit>Unlike a regular [`Worker`](https://developer.mozilla.org/en-US/docs/Web/API/Worker), which is scoped to a single window or tab, a `SharedWorker` creates a **shared execution context** that can be accessed by all windows of the same origin — making it ideal for coordinating state or data **across multiple browser windows**.</p>
+
+    <h3>Key Features</h3>
+
+    <ul>
+      <li data-js-markdownit>**Multiple contexts**: A single `SharedWorker` can be accessed by multiple windows or tabs, allowing them to share data and state.</li>
+      <li data-js-markdownit>**Shared execution context**: The worker runs in a separate thread, allowing it to perform tasks without blocking the main UI thread.</li>
+      <li data-js-markdownit>**Shared state**: The worker can maintain a shared state that all connected windows can access and modify.</li>
+      <li data-js-markdownit>**Communication**: The worker can communicate with all connected windows using the `port` object, which is a communication channel between the worker and the main thread.</li>
+      <li data-js-markdownit>**Lifecycle management**: The worker remains alive as long as at least one window is connected to it, allowing it to maintain state and perform tasks in the background.</li>
+      <li data-js-markdownit>**Same-origin policy**: All communicating pages must come from the same origin (protocol + domain + port).</li>
+    </ul>
+
+    <button class="mv-xl"><a href="index.html" target="_blank">Open New Window</a></button>
+  </header>
+
+  <section>
+    <div data-js-code-example></div>
+  </section>
+
+  <footer class="has-grid">
+    <div>
+      <strong>Me</strong>
+      <div data-js-my-position></div>
+    </div>
+
+    <div>
+      <strong>Other</strong>
+      <div data-js-other-position></div>
+    </div>
+  </footer>
+
+  <script id="observe-window-position">
+    const worker = new SharedWorker('shared.js');
+    worker.port.start();
+
+    // Observe my window position (current window)
+    // ######################################################################## 
+
+    const myWindowPosition = {
+      x: false,
+      y: false
+    }
+
+    const trackMyWindowPosition = () => {
+
+      if (myWindowPosition.x === window.screenX 
+        && myWindowPosition.y === window.screenY) return;
+
+      myWindowPosition.x = window.screenX;
+      myWindowPosition.y = window.screenY;
+
+      // Store Window Data in Shared Worker
+      worker.port.postMessage(myWindowPosition);
+
+      // Update my window position in the UI
+      const myConsole = document.querySelector('[data-js-my-position]');
+      myConsole.innerHTML = `<p>${myWindowPosition.x}, ${myWindowPosition.y}</p>`;
+    }
+
+    // Observe my window position
+    trackMyWindowPosition();
+    const obverveMyWindowPosition = setInterval(trackMyWindowPosition, 500);
+
+    // Receive messages from the worker
+    // ########################################################################
+
+    worker.port.onmessage = (event) => {
+
+      if(!event.data) return;
+      const otherWindowPosition = event.data;
+
+      // Update other window position in the UI
+      const otherConsole = document.querySelector('[data-js-other-position]');
+      otherConsole.innerHTML = `<p>${otherWindowPosition.x}, ${otherWindowPosition.y}</p>`;
+
+    };
+  </script>
+
+  <script>
+    const scriptContent = document.getElementById('observe-window-position').textContent;
+    const pre = document.createElement('pre');
+    const code = document.createElement('code');
+    code.textContent = scriptContent;
+    pre.appendChild(code);
+
+    const targetElement = document.querySelector('[data-js-code-example]');
+    targetElement.appendChild(pre);
+  </script>
+
+</body>
+
+</html>
