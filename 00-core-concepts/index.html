@@ -8,17 +8,17 @@
   <meta name="keywords" content="browser windows, data sharing, window position, opener, postMessage, localStorage, SharedWorker, central state management">
   <meta name="author" content="Christian Noss - https://christiannoss.de">
 
-  <link rel="icon" href="assets/favicon/favicon.ico">
-  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
-  <link rel="manifest" href="assets/manifest.json">
+  <link rel="icon" href="../shared/assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="../shared/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../shared/assets/manifest.json">
 
-  <title>Basic concepts of sharing data between browser windows</title>
+  <title>Core concepts of sharing data between browser windows</title>
 
-  <link rel="stylesheet" href="assets/styles/reset.css">
-  <link rel="stylesheet" href="assets/styles/base.css">
+  <link rel="stylesheet" href="../shared/assets/styles/reset.css">
+  <link rel="stylesheet" href="../shared/assets/styles/base.css">
 
-  <script src="assets/libs/markdown-it.min.js"></script>
-  <script src="assets/scripts/helper.js"></script>
+  <script src="../shared/assets/libs/markdown-it.min.js"></script>
+  <script src="../shared/assets/scripts/helper.js"></script>
 
 </head>
 
@@ -125,7 +125,7 @@
       access the main window's properties and methods.
     </p>
 
-    <button class="mv-xl"><a href="window-opener-demo/parent.html" target="_blank">Window Opener Demo</a></button>
+    <a class="button mv-xl"  href="window-opener-demo/parent.html" target="_blank">Window Opener Demo</a>
   </section>
 
   <section id="post-message">
@@ -134,7 +134,7 @@
       sharing data
       between windows that are not related (i.e., they do not share the same opener).</p>
 
-    <button class="mv-xl"><a href="post-message-demo/index.html" target="_blank">Post Message Demo</a></button>
+    <a class="button mv-xl"  href="post-message-demo/index.html" target="_blank">Post Message Demo</a>
 
   </section>
 
@@ -145,7 +145,7 @@
       between windows that are not related (i.e., they do not share the same opener). The data is **synchronous** and
       **string-based** (you store and retrieve strings only) and it doesn’t expire.</p>
 
-    <button class="mv-xl"><a href="local-storage-demo/index.html" target="_blank">Local Storage Demo</a></button>
+    <a class="button mv-xl"  href="local-storage-demo/index.html" target="_blank">Local Storage Demo</a>
   </section>
 
   <section id="shared-worker">
@@ -154,15 +154,15 @@
       windows. This is useful for sharing data between windows that are not related (i.e., they do not share the same
       opener). The data is **asynchronous** and **string-based** and it doesn’t expire.</p>
 
-    <button class="mv-xl"><a href="shared-worker-demo/index.html" target="_blank">Shared Worker Demo</a></button>
+    <a class="button mv-xl"  href="shared-worker-demo/index.html" target="_blank">Shared Worker Demo</a>
   </section>
 
   <section id="shared-worker-with-central-state-management">
     <h2>Using Shared Worker with Central State Management</h2>
     <p data-js-markdownit>We can also use the SharedWorker for centralised state management.</p>
 
-    <button class="mv-xl"><a href="shared-worker-with-central-state-management-demo/index.html" target="_blank">Shared
-        Worker with Central State Management Demo</a></button>
+    <a class="button mv-xl"  href="shared-worker-with-central-state-management-demo/index.html" target="_blank">Shared
+        Worker with Central State Management Demo</a>
   </section>
 
   <section id="conclusion">
@@ -289,7 +289,7 @@
     <h2>Final Solution</h2>
     <p>This extended version of the SharedWorker-based Central State Management system now includes additional window-specific properties. In addition to tracking each window’s position, the system also observes its current size and automatically calculates its center point (midpoint). These values are stored centrally within the worker and kept up to date through regular updates. This provides a more complete spatial model of all active windows and allows for more precise coordination and layout logic across multiple browser views.</p>
 
-    <button class="mv-xl"><a href="multiple-window-data-shared-worker/index.html" target="_blank">Multi-Window Worker Demo</a></button>
+    <a class="button mv-xl"  href="multiple-window-data-shared-worker/index.html" target="_blank">Multi-Window Worker Demo</a>
 
   <section>
     <h2>Further Reading</h2>

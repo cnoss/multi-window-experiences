@@ -5,20 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" href="../assets/favicon/favicon.ico">
-  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
-  <link rel="manifest" href="../assets/manifest.json">
+  <link rel="icon" href="../../shared/assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="../../shared/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../../shared/assets/manifest.json">
 
   <title>SharedWorker Demo</title>
 
-  <link rel="stylesheet" href="../assets/styles/reset.css">
-  <link rel="stylesheet" href="../assets/styles/base.css">
+  <link rel="stylesheet" href="../../shared/assets/styles/reset.css">
+  <link rel="stylesheet" href="../../shared/assets/styles/base.css">
 
-  <link rel="stylesheet" href="../assets/libs/github.min.css">
-  <script src="../assets/libs/highlight.min.js"></script>
-  <script src="../assets/libs/highlightjs-line-numbers.min.js"></script>
-  <script src="../assets/libs/markdown-it.min.js"></script>
-  <script src="../assets/scripts/helper.js"></script>
+  <link rel="stylesheet" href="../../shared/assets/libs/github.min.css">
+  <script src="../../shared/assets/libs/highlight.min.js"></script>
+  <script src="../../shared/assets/libs/highlightjs-line-numbers.min.js"></script>
+  <script src="../../shared/assets/libs/markdown-it.min.js"></script>
+  <script src="../../shared/assets/scripts/helper.js"></script>
 </head>
 
 <body>
@@ -41,10 +41,17 @@
       <li data-js-markdownit>**Same-origin policy**: All communicating pages must come from the same origin (protocol + domain + port).</li>
     </ul>
 
-    <button class="mv-xl"><a href="index.html" target="_blank">Open New Window</a></button>
+    <a class="button mv-xl"  href="index.html" target="_blank">Open New Window</a>
   </header>
 
   <section>
+    <h2>Worker Code</h2>
+    <div data-js-worker-code-example></div>
+    <p class="note">This code is executed in the SharedWorker context.</p>
+  </section>
+
+  <section>
+    <h2>Client Code</h2>
     <div data-js-code-example></div>
   </section>
 
@@ -108,15 +115,8 @@
   </script>
 
   <script>
-    const scriptContent = document.getElementById('observe-window-position').textContent;
-    const pre = document.createElement('pre');
-    const code = document.createElement('code');
-    code.textContent = scriptContent;
-    pre.appendChild(code);
-
-    const targetElement = document.querySelector('[data-js-code-example]');
-    targetElement.appendChild(pre);
-
+    showInFileCode('observe-window-position', '[data-js-code-example]');
+    fetchAndShowExternalCode('shared.js', '[data-js-worker-code-example]');
     hljs.highlightAll();
     hljs.initLineNumbersOnLoad();
   </script>

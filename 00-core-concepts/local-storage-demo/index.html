@@ -5,20 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" href="../assets/favicon/favicon.ico">
-  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
-  <link rel="manifest" href="../assets/manifest.json">
+  <link rel="icon" href="../../shared/assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="../../shared/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../../shared/assets/manifest.json">
 
   <title>LocalStorage Demo</title>
 
-  <link rel="stylesheet" href="../assets/styles/reset.css">
-  <link rel="stylesheet" href="../assets/styles/base.css">
+  <link rel="stylesheet" href="../../shared/assets/styles/reset.css">
+  <link rel="stylesheet" href="../../shared/assets/styles/base.css">
 
-  <link rel="stylesheet" href="../assets/libs/github.min.css">
-  <script src="../assets/libs/highlight.min.js"></script>
-  <script src="../assets/libs/highlightjs-line-numbers.min.js"></script>
-  <script src="../assets/libs/markdown-it.min.js"></script>
-  <script src="../assets/scripts/helper.js"></script>
+  <link rel="stylesheet" href="../../shared/assets/libs/github.min.css">
+  <script src="../../shared/assets/libs/highlight.min.js"></script>
+  <script src="../../shared/assets/libs/highlightjs-line-numbers.min.js"></script>
+  <script src="../../shared/assets/libs/markdown-it.min.js"></script>
+  <script src="../../shared/assets/scripts/helper.js"></script>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
   
     <p class="hero-text" data-js-markdownit><code>localStorage</code> is part of the [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) and provides a simple way to store key–value pairs directly in the browser. It allows web applications to save small amounts of data that persist even after the page is reloaded or the browser is closed. A particularly useful feature is the [`storage` event](https://developer.mozilla.org/en-US/docs/Web/API/Window/storage_event), which lets other open windows or tabs of the same origin react in real time when `localStorage` is updated. This makes `localStorage` a practical tool for syncing state between multiple browser windows or tabs.</p>
 
-    <button class="mv-xl"><a href="index.html" target="_blank">Open New Window</a></button>
+    <a class="button mv-xl"  href="index.html" target="_blank">Open New Window</a>
   </header>
 
   <section>
@@ -91,15 +91,7 @@
   </script>
 
   <script>
-    const scriptContent = document.getElementById('observe-window-position').textContent;
-    const pre = document.createElement('pre');
-    const code = document.createElement('code');
-    code.textContent = scriptContent;
-    pre.appendChild(code);
-
-    const targetElement = document.querySelector('[data-js-code-example]');
-    targetElement.appendChild(pre);
-
+    showInFileCode('observe-window-position', '[data-js-code-example]');
     hljs.highlightAll(); 
     hljs.initLineNumbersOnLoad();
   </script>

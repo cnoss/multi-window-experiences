@@ -5,20 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" href="../assets/favicon/favicon.ico">
-  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
-  <link rel="manifest" href="../assets/manifest.json">
+  <link rel="icon" href="../../shared/assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="../../shared/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../../shared/assets/manifest.json">
 
   <title>Shared Worker with Central State Management Demo</title>
 
-  <link rel="stylesheet" href="../assets/styles/reset.css">
-  <link rel="stylesheet" href="../assets/styles/base.css">
+  <link rel="stylesheet" href="../../shared/assets/styles/reset.css">
+  <link rel="stylesheet" href="../../shared/assets/styles/base.css">
 
-  <link rel="stylesheet" href="../assets/libs/github.min.css">
-  <script src="../assets/libs/highlight.min.js"></script>
-  <script src="../assets/libs/highlightjs-line-numbers.min.js"></script>
-  <script src="../assets/libs/markdown-it.min.js"></script>
-  <script src="../assets/scripts/helper.js"></script>
+  <link rel="stylesheet" href="../../shared/assets/libs/github.min.css">
+  <script src="../../shared/assets/libs/highlight.min.js"></script>
+  <script src="../../shared/assets/libs/highlightjs-line-numbers.min.js"></script>
+  <script src="../../shared/assets/libs/markdown-it.min.js"></script>
+  <script src="../../shared/assets/scripts/helper.js"></script>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
       real-time coordination and state synchronization across all connected windows. The architecture is designed for
       interactive, distributed layouts and multi-window web experiences.</p>
 
-    <button class="mv-xl"><a href="index.html" target="_blank">Open New Window</a></button>
+    <a class="button mv-xl"  href="index.html" target="_blank">Open New Window</a>
     <button class="mv-xl" data-js-get-my-position>Get my window metrics</button>
     <button class="mv-xl" data-js-get-other-positions>Get metrics from other window</button>
   </header>
@@ -272,54 +272,8 @@
 
   <!-- Showing current JS code in browser -->
   <script>
-
-    const scriptContent = document.getElementById('observe-window-position').textContent;
-    const pre = document.createElement('pre');
-    const code = document.createElement('code');
-    code.textContent = scriptContent;
-    pre.appendChild(code);
-
-    const targetElement = document.querySelector('[data-js-code-example]');
-    targetElement.appendChild(pre);
-
-    fetch('multiple-window-data.js')
-      .then(response => response.text())
-      .then(jsCode => {
-
-        const indentedJsCode = jsCode
-          .split('\n')
-          .map(line => '    ' + line) // oder '\t' für echten Tab
-          .join('\n');
-        const workerCodeTarget = document.querySelector('[data-js-worker-code-example]');
-        const preBlock = document.createElement('pre');
-        const codeBlock = document.createElement('code');
-        codeBlock.classList.add('hljs', 'language-javascript', 'line-numbers');
-        codeBlock.textContent = indentedJsCode;
-        preBlock.appendChild(codeBlock);
-        workerCodeTarget.appendChild(preBlock);
-        hljs.highlightAll();
-        hljs.initLineNumbersOnLoad();
-
-
-        setTimeout(() => {
-          const lineNumbers = document.querySelectorAll('.hljs-ln-line .hljs-ln-n');
-          const lines = document.querySelectorAll('.hljs-ln-line');
-
-          lineNumbers.forEach((numberEl, index) => {
-            numberEl.style.cursor = 'pointer';
-            numberEl.addEventListener('click', () => {
-
-              console.log('Clicked line number:', index + 1);
-              const line = lines[index];
-              line.classList.toggle('highlighted-line');
-            });
-          });
-        }, 500); // delay nötig, weil Plugin DOM async manipuliert
-
-      })
-      .catch(error => {
-        console.error('Fehler beim Laden der JS-Datei:', error);
-      });
+    showInFileCode('observe-window-position', '[data-js-code-example]');
+    fetchAndShowExternalCode('multiple-window-data.js', '[data-js-worker-code-example]');
   </script>
 
 </body>
