@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore different concepts and techniques for sharing data between browser windows, including window position detection, opener, postMessage, localStorage, and SharedWorker.">
-  <meta name="keywords" content="browser windows, data sharing, window position, opener, postMessage, localStorage, SharedWorker, central state management">
+  <meta name="description"
+    content="Explore different concepts and techniques for sharing data between browser windows, including window position detection, opener, postMessage, localStorage, and SharedWorker.">
+  <meta name="keywords"
+    content="browser windows, data sharing, window position, opener, postMessage, localStorage, SharedWorker, central state management">
   <meta name="author" content="Christian Noss - https://christiannoss.de">
 
   <link rel="icon" href="shared/assets/favicon/favicon.ico">
@@ -25,33 +27,37 @@
 <body>
   <header>
     <h1>Multi-Window Experiences with p5.js</h1>
-    
-    <p class="hero-text">Research question:<br>How do I share real-time data between two browser windows and use it for a visualisation with p5.js?</p>
+
+    <p class="hero-text">Research question:<br>How do I share real-time data between two browser windows and use it for
+      a visualisation with p5.js?</p>
   </header>
 
-  <section>
-    <h2>Table of Contents</h2>
-    <ul>
-
-    </ul>
-  </section>
-
-  <section id="core-concepts">
+  <section id="core-concepts" class="collapsible">
     <h2>Core Concepts</h2>
 
-    <p data-js-markdownit>This overview introduces several techniques for sharing data between browser windows, focusing on window positioning and state synchronization. It covers fundamental concepts such as detecting window position and observing changes, and explores communication strategies using `window.opener`, `postMessage`, `localStorage`, and `SharedWorker`. The final implementation builds on a SharedWorker with centralized state management, allowing multiple windows to share detailed metrics like position, size, and center point in real time. This architecture enables dynamic coordination across distributed browser views.</p>
-    <a class="button mv-xl"  href="00-core-concepts/index.html">More about Core Concepts</a>
-
+    <div class="content">
+      <p data-js-markdownit>This overview introduces several techniques for sharing data between browser windows,
+        focusing on window positioning and state synchronization. It covers fundamental concepts such as detecting
+        window position and observing changes, and explores communication strategies using `window.opener`,
+        `postMessage`, `localStorage`, and `SharedWorker`. The final implementation builds on a SharedWorker with
+        centralized state management, allowing multiple windows to share detailed metrics like position, size, and
+        center point in real time. This architecture enables dynamic coordination across distributed browser views.</p>
+      <a class="button mv-xl" href="00-core-concepts/index.html">More about Core Concepts</a>
+    </div>
   </section>
 
-  <section id="tools-of-the-trade-for-visualisation">
+  <section id="tools-of-the-trade-for-visualisation" class="collapsible">
     <h2>Tools of the trade for visualisation</h2>
-
-    <p data-js-markdownit>This section provides an introduction to [p5.js](https://p5js.org), a JavaScript library for creative coding. It covers the basic structure of a [p5.js](https://p5js.org) sketch, including setup and draw functions, and demonstrates how to create simple shapes and animations. The goal is to familiarize you with the [p5.js](https://p5js.org) environment and its capabilities for visualizing data.</p>
-    <a class="button mv-xl"  href="01-tools-of-the-trade-for-visualisation/index.html">More about p5.js Basics</a>
+    <div class="content">
+      <p data-js-markdownit>This section provides an introduction to [p5.js](https://p5js.org), a JavaScript library for
+        creative coding. It covers the basic structure of a [p5.js](https://p5js.org) sketch, including setup and draw
+        functions, and demonstrates how to create simple shapes and animations. The goal is to familiarize you with the
+        [p5.js](https://p5js.org) environment and its capabilities for visualizing data.</p>
+      <a class="button mv-xl" href="01-tools-of-the-trade-for-visualisation/index.html">More about p5.js Basics</a>
+    </div>
   </section>
 
-  
+
 </body>
 
 </html>
