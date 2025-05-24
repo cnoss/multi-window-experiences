@@ -4,18 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore different concepts and techniques for sharing data between browser windows, including window position detection, opener, postMessage, localStorage, and SharedWorker.">
+  <meta name="keywords" content="browser windows, data sharing, window position, opener, postMessage, localStorage, SharedWorker, central state management">
+  <meta name="author" content="Christian Noss - https://christiannoss.de">
+
+  <link rel="icon" href="assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="assets/manifest.json">
+
   <title>Basic concepts of sharing data between browser windows</title>
 
-  <link rel="stylesheet" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="assets/styles/reset.css">
+  <link rel="stylesheet" href="assets/styles/base.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
-  
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
   <script>hljs.highlightAll();</script>
 
   <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
-  <script src="scripts/addMarkdownSupport.js"></script>
+  <script src="assets/scripts/helper.js"></script>
 
 </head>
 
@@ -34,6 +42,8 @@
       <li><a href="#post-message">Using PostMessage</a></li>
       <li><a href="#local-storage">Using Local Storage</a></li>
       <li><a href="#shared-worker">Using Shared Worker</a></li>
+      <li><a href="#shared-worker-with-central-state-management">Using Shared Worker with Central State Management</a></li>
+      <li><a href="#conclusion">Conclusion</a></li>
     </ul>
   </section>
 
@@ -115,34 +125,189 @@
   <section id="opener">
     <h2>Using Opener</h2>
     <p>The <code>opener</code> property allows a window to reference the window that opened it. This is useful for
-      sharing data between windows. For example, if you have a main window that opens a new window, you can use the <code>opener</code> property to
-      access the main window's properties and methods.</p>
+      sharing data between windows. For example, if you have a main window that opens a new window, you can use the
+      <code>opener</code> property to
+      access the main window's properties and methods.
+    </p>
 
     <button class="mv-xl"><a href="window-opener-demo/parent.html" target="_blank">Window Opener Demo</a></button>
   </section>
 
   <section id="post-message">
     <h2>Using PostMessage</h2>
-    <p data-js-markdownit>The `postMessage` method allows you to send messages between windows. This is useful for sharing data
+    <p data-js-markdownit>The `postMessage` method allows you to send messages between windows. This is useful for
+      sharing data
       between windows that are not related (i.e., they do not share the same opener).</p>
 
     <button class="mv-xl"><a href="post-message-demo/index.html" target="_blank">Post Message Demo</a></button>
-    
+
   </section>
 
   <section id="local-storage">
     <h2>Using Local Storage</h2>
-    <p data-js-markdownit>The `localStorage` object allows you to store data in the browser. This is useful for sharing data
-      between windows that are not related (i.e., they do not share the same opener). The data is **synchronous** and **string-based** (you store and retrieve strings only) and it doesn’t expire.</p>
+    <p data-js-markdownit>The `localStorage` object allows you to store data in the browser. This is useful for sharing
+      data
+      between windows that are not related (i.e., they do not share the same opener). The data is **synchronous** and
+      **string-based** (you store and retrieve strings only) and it doesn’t expire.</p>
 
     <button class="mv-xl"><a href="local-storage-demo/index.html" target="_blank">Local Storage Demo</a></button>
   </section>
 
   <section id="shared-worker">
     <h2>Using Shared Worker</h2>
-    <p data-js-markdownit>The `SharedWorker` object allows you to create a worker that can be shared between multiple windows. This is useful for sharing data between windows that are not related (i.e., they do not share the same opener). The data is **asynchronous** and **string-based** and it doesn’t expire.</p>
+    <p data-js-markdownit>The `SharedWorker` object allows you to create a worker that can be shared between multiple
+      windows. This is useful for sharing data between windows that are not related (i.e., they do not share the same
+      opener). The data is **asynchronous** and **string-based** and it doesn’t expire.</p>
 
     <button class="mv-xl"><a href="shared-worker-demo/index.html" target="_blank">Shared Worker Demo</a></button>
+  </section>
+
+  <section id="shared-worker-with-central-state-management">
+    <h2>Using Shared Worker with Central State Management</h2>
+    <p data-js-markdownit>We can also use the SharedWorker for centralised state management.</p>
+
+    <button class="mv-xl"><a href="shared-worker-with-central-state-management-demo/index.html" target="_blank">Shared
+        Worker with Central State Management Demo</a></button>
+  </section>
+
+  <section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>In this article, we explored different concepts and techniques for sharing data between browser windows. We
+      learned how to detect window position, observe window position changes, and use opener, postMessage, localStorage,
+      and SharedWorker to share data between windows.</p>
+
+    <h3>Comparison Table: Multi-Window Communication Techniques</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Concept</th>
+          <th>Advantages</th>
+          <th>Disadvantages</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Using <code>window.opener</code></strong></td>
+          <td>
+            <ul>
+              <li>Direct reference to the parent window</li>
+              <li>Easy to call functions or access properties directly</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Only works for windows opened via <code>window.open()</code></li>
+              <li>No cross-tab support</li>
+              <li>Easily breaks on reloads</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Using <code>postMessage</code></strong></td>
+          <td>
+            <ul>
+              <li>Works between parent and child</li>
+              <li>Can pass messages across origins</li>
+              <li>No shared memory needed</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Only point-to-point (no broadcast)</li>
+              <li>Requires explicit window reference</li>
+              <li>No persistence</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Using <code>localStorage</code></strong></td>
+          <td>
+            <ul>
+              <li>Simple key-value storage</li>
+              <li>Persistent across reloads</li>
+              <li><code>storage</code> event allows cross-tab updates</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>No structured data (strings only)</li>
+              <li>No live two-way channel</li>
+              <li>Not reactive in the same window</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Using <code>SharedWorker</code></strong></td>
+          <td>
+            <ul>
+              <li>Persistent background process</li>
+              <li>Can coordinate multiple windows</li>
+              <li>Reusable logic</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>More complex setup</li>
+              <li>Limited browser support (e.g. no Incognito)</li>
+              <li>No built-in state management</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>SharedWorker + Central State Management</strong></td>
+          <td>
+            <ul>
+              <li>Combines shared communication and shared logic</li>
+              <li>Keeps global state in one place</li>
+              <li>Fully decouples windows from each other</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Requires custom implementation of state handling</li>
+              <li>Harder to debug</li>
+              <li>Not persistent across full browser shutdowns</li>
+            </ul>
+          </td>
+        </tr>
+
+      </tbody>
+      </thead>
+    </table>
+
+    <h3>When to Use What?</h3>
+    <ul>
+      <li>Use <code>window.opener</code> for <strong>quick control between parent/child</strong>, but not for scalable
+        systems.</li>
+      <li>Use <code>postMessage</code> when <strong>direct but flexible messaging</strong> is needed.</li>
+      <li>Use <code>localStorage</code> for <strong>persistent, simple key–value sync</strong>, with minimal effort.
+      </li>
+      <li>Use <code>SharedWorker</code> when you need <strong>live coordination across windows</strong>.</li>
+      <li>Use <code>SharedWorker + central state</code> for <strong>real-time, stateful multi-window
+          applications</strong> that require coordination, tracking, or shared logic.</li>
+    </ul>
+
+  </section>
+
+  <section id="final-solution">
+    <h2>Final Solution</h2>
+    <p>This extended version of the SharedWorker-based Central State Management system now includes additional window-specific properties. In addition to tracking each window’s position, the system also observes its current size and automatically calculates its center point (midpoint). These values are stored centrally within the worker and kept up to date through regular updates. This provides a more complete spatial model of all active windows and allows for more precise coordination and layout logic across multiple browser views.</p>
+
+    <button class="mv-xl"><a href="multiple-window-data-shared-worker/index.html" target="_blank">Multi-Window Worker Demo</a></button>
+
+  <section>
+    <h2>Further Reading</h2>
+    <ul>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/opener" target="_blank">MDN Web Docs:
+          Window.opener</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage" target="_blank">MDN Web Docs:
+          Window.postMessage</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/LocalStorage" target="_blank">MDN Web Docs:
+          LocalStorage</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker" target="_blank">MDN Web Docs:
+          SharedWorker</a></li>
+    </ul>
   </section>
 
   <footer data-js-footer></footer>

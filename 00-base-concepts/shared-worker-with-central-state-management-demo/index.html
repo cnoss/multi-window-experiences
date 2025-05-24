@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="../assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../assets/manifest.json">
+
+  <title>Shared Worker with Central State Management Demo</title>
+
+  <link rel="stylesheet" href="../assets/styles/reset.css">
+  <link rel="stylesheet" href="../assets/styles/base.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+  <script src="../assets/scripts/helper.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Shared Worker with Central State Management Demo</h1>
+    <h2 class="subtitle">I'm <span data-js-my-window-id></span></h2>
+
+    <p class="hero-text" data-js-markdownit>This demo connects multiple browser windows to a central background process
+      using a [SharedWorker](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker). The key idea is a shared
+      state architecture that keeps all windows synchronized—without them needing direct access to each other.</p>
+
+    <p data-js-markdownit>This demo illustrates how multiple browser windows can be orchestrated through a
+      [SharedWorker](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker) acting as a central data hub. Each
+      window periodically sends its current position to the worker, which stores and manages all incoming data
+      centrally. When one window moves, the worker distributes an update to all others, keeping the state synchronized
+      across views—without any direct reference between the windows.
+    </p>
+
+    <p data-js-markdownit>What makes this approach unique is its integration of **centralized state management** into
+      the SharedWorker
+      model. Unlike other communication methods such as
+      [`postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage),
+      [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), or
+      [`BroadcastChannel`](https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel), this setup allows the
+      SharedWorker not only to distribute messages but also to **maintain a persistent, coherent state** independently
+      of any individual window. If a window is reloaded or temporarily closed, the overall state remains intact and
+      available.</p>
+
+    <button class="mv-xl"><a href="index.html" target="_blank">Open New Window</a></button>
+    <button class="mv-xl" data-js-get-my-position>Get my position</button>
+    <button class="mv-xl" data-js-get-other-positions>Get other positions</button>
+  </header>
+
+  <section>
+    <h2>Worker Code</h2>
+    <div data-js-worker-code-example></div>
+    <p class="note">This code is executed in the SharedWorker context.</p>
+  </section>
+
+  <section>
+    <h2>Client Code</h2>
+    <div data-js-code-example></div>
+  </section>
+
+  <footer class="has-grid">
+    <div>
+      <strong>Me</strong>
+      <div data-js-my-position></div>
+    </div>
+
+    <div>
+      <strong>Other</strong>
+      <div data-js-other-position></div>
+    </div>
+  </footer>
+
+  <script id="observe-window-position">
+    // Connect to the SharedWorker
+    const worker = new SharedWorker('shared-with-csm.js', { name: 'shared-worker-with-csm' });
+    worker.port.start();
+
+    // Generate a window ID or reuse an existing one (window.name)
+    const myId = window.name || getWindowId();
+    window.name = myId;
+
+    // Display this window's ID in the UI
+    const myWindowIdTarget = document.querySelector('[data-js-my-window-id]');
+    myWindowIdTarget.innerHTML = myId;
+
+    // Store this window's current position locally
+    const myWindowPosition = {
+      x: false,
+      y: false
+    };
+
+    // Show position in the UI (e.g. in a console element)
+    const updatePositionInUI = (selector, windowPosition) => {
+      const target = document.querySelector(`[${selector}]`);
+      target.innerHTML = `<p>${windowPosition.x}, ${windowPosition.y}</p>`;
+
+      // Trigger visual change (e.g. CSS transition animation)
+      target.classList.remove('has-been-changed');
+      void target.offsetWidth; // Force reflow
+      target.classList.add('has-been-changed');
+    };
+
+    // Request all other window positions from the worker
+    const getOtherPositions = () => {
+      worker.port.postMessage({ type: 'getOtherPositions', id: myId });
+    };
+
+    // Regularly check whether this window has moved
+    const trackMyWindowPosition = () => {
+      if (myWindowPosition.x === window.screenX && myWindowPosition.y === window.screenY) return;
+
+      myWindowPosition.x = window.screenX;
+      myWindowPosition.y = window.screenY;
+
+      // Send updated position to the worker
+      worker.port.postMessage({
+        id: myId,
+        type: 'position',
+        position: myWindowPosition
+      });
+
+      // Update the UI
+      updatePositionInUI('data-js-my-position', myWindowPosition);
+    };
+
+    // Initial position check + interval every 500ms
+    trackMyWindowPosition();
+    const observeMyWindowPosition = setInterval(trackMyWindowPosition, 500);
+
+    // Button: manually request this window's position from the worker
+    const getMyPositionButton = document.querySelector('[data-js-get-my-position]');
+    getMyPositionButton.addEventListener('click', () => {
+      worker.port.postMessage({ type: 'getMyPosition', id: myId });
+    });
+
+    // Button: request positions of other windows
+    const getOtherPositionsButton = document.querySelector('[data-js-get-other-positions]');
+    getOtherPositionsButton.addEventListener('click', () => {
+      getOtherPositions();
+    });
+    getOtherPositions(); // Initial fetch
+
+    // Handle messages received from the worker
+    worker.port.onmessage = (event) => {
+      if (!event.data) return;
+      const msg = event.data;
+
+      // Another window has moved
+      if (msg.type === 'update') {
+        const otherWindowPosition = msg.position;
+        updatePositionInUI('data-js-other-position', otherWindowPosition);
+      }
+
+      // Initial list of other windows' positions
+      if (msg.type === 'otherPositions') {
+        if (msg.data.length === 0) return;
+        const firstWindow = msg.data[0];
+        const otherWindowPosition = firstWindow.position;
+        updatePositionInUI('data-js-other-position', otherWindowPosition);
+      }
+
+      // This window's own position confirmed by the worker
+      if (msg.type === 'myPosition') {
+        console.log('My window:', msg.position);
+        updateMyPositionInUI(msg.position); // Likely defined elsewhere
+      }
+    };
+
+  </script>
+
+
+  <!-- Showing current JS code in browser -->
+  <script>
+
+    const scriptContent = document.getElementById('observe-window-position').textContent;
+    const pre = document.createElement('pre');
+    const code = document.createElement('code');
+    code.textContent = scriptContent;
+    pre.appendChild(code);
+
+    const targetElement = document.querySelector('[data-js-code-example]');
+    targetElement.appendChild(pre);
+
+    fetch('shared-with-csm.js')
+      .then(response => response.text())
+      .then(jsCode => {
+
+        const indentedJsCode = jsCode
+          .split('\n')
+          .map(line => '    ' + line) // oder '\t' für echten Tab
+          .join('\n');
+        const workerCodeTarget = document.querySelector('[data-js-worker-code-example]');
+        const preBlock = document.createElement('pre');
+        const codeBlock = document.createElement('code');
+        codeBlock.classList.add('hljs', 'language-javascript', 'line-numbers');
+        codeBlock.textContent = indentedJsCode;
+        preBlock.appendChild(codeBlock);
+        workerCodeTarget.appendChild(preBlock);
+        hljs.highlightAll();
+        hljs.initLineNumbersOnLoad();
+
+
+              setTimeout(() => {
+        const lineNumbers = document.querySelectorAll('.hljs-ln-line .hljs-ln-n');
+        const lines = document.querySelectorAll('.hljs-ln-line');
+
+        lineNumbers.forEach((numberEl, index) => {
+          numberEl.style.cursor = 'pointer';
+          numberEl.addEventListener('click', () => {
+
+            console.log('Clicked line number:', index + 1);
+            const line = lines[index];
+            line.classList.toggle('highlighted-line');
+          });
+        });
+      }, 500); // delay nötig, weil Plugin DOM async manipuliert
+
+      })
+      .catch(error => {
+        console.error('Fehler beim Laden der JS-Datei:', error);
+      });
+  </script>
+
+</body>
+
+</html>

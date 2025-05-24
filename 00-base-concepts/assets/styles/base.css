@@ -9,7 +9,7 @@
   --font-mono: 'Fira Code', 'Courier New', monospace;
   scroll-behavior: smooth;
 
-  --max-width: 80rem;
+  --max-width: 70rem;
 }
 
 body {
@@ -29,6 +29,7 @@ h4 {
   color: var(--text-color);
   margin-bottom: 1em;
   padding-top: 2em;
+  text-wrap: balance;
 }
 
 code,
@@ -78,9 +79,28 @@ strong {
   font-weight: 600;
 }
 
-header{
-  max-width: var(--max-width);
+/* Definitions
+############################################################################ */
+
+dt,
+dd {
+  display: inline;
+  margin: 0;
 }
+
+dt::after {
+  content: ": ";
+}
+
+dd::after {
+  content: " ";
+  height: 0;
+  display: block;
+}
+
+
+/* Section
+############################################################################ */
 
 section {
   max-width: var(--max-width);
@@ -117,6 +137,22 @@ section {
   }
 }
 
+/* header
+############################################################################ */
+
+header {
+  max-width: var(--max-width);
+
+  p {
+    max-width: 60em;
+    hyphens: auto;
+  }
+
+  p+p {
+    margin-top: 1em;
+  }
+}
+
 /* Button
 ############################################################################ */
 
@@ -130,15 +166,27 @@ button {
   transition: all 0.2s ease-in-out;
   background-color: var(--accent-color);
 
-  a{
+  a {
     color: var(--lightest);
   }
 
   &:hover {
-
     color: var(--bg-color);
     transform: scale(1.05);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Animation
+############################################################################ */
+
+@keyframes highlightChange {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -161,6 +209,10 @@ footer {
     font-weight: 600;
   }
 
+  .has-been-changed {
+    animation: highlightChange 1s ease-in-out;
+  }
+
   &.has-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -168,16 +220,32 @@ footer {
   }
 }
 
-.hero-text{
+.hero-text {
   max-width: var(--max-width);
   font-size: 1.5rem;
   padding-bottom: 1em;
 }
 
+/* Code
+############################################################################ */
+
+pre,
+code {
+  background-color: #fff !important;
+
+  .hljs-ln-n {
+    opacity: 0.5;
+  }
+
+  .highlighted-line {
+    background-color: #ffffcc;
+  }
+}
+
 /* Utilities
 ############################################################################ */
 
-.mv-xl{
+.mv-xl {
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
