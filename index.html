@@ -46,18 +46,70 @@
     </div>
   </section>
 
-  <section id="tools-of-the-trade-for-visualisation" class="collapsible">
+  <section id="working-with-p5" class="collapsible">
     <h2>Working with p5.js</h2>
     <div class="content">
       <p data-js-markdownit>This section provides an introduction to [p5.js](https://p5js.org), a JavaScript library for
         creative coding. It covers the basic structure of a [p5.js](https://p5js.org) sketch, including setup and draw
         functions, and demonstrates how to create simple shapes and animations. The goal is to familiarize you with the
         [p5.js](https://p5js.org) environment and its capabilities for visualizing data.</p>
-      <a class="button mv-xl" href="01-tools-of-the-trade-for-visualisation/index.html">More about p5.js</a>
+      <a class="button mv-xl" href="01-working-with-p5/index.html">More about p5.js</a>
     </div>
   </section>
 
+  <section id="single-window-simple-object-example" class="collapsible">
+    <h2>Single Window, Simple Object Example</h2>
+    <div class="content">
+      <p data-js-markdownit>This example demonstrates how a simple object—represented as a circle—is centered in a
+        single browser window. When the window is moved, the circle appears to briefly stay in its original screen
+        position before smoothly returning to the center of the window. This creates a subtle physical effect that
+        visually emphasizes the motion of the window itself.</p>
+      <a class="button mv-xl" href="02-single-window-simple-object-example/index.html">Show the Example</a>
+    </div>
+  </section>
 
+  <section id="single-window-complex-object-example" class="collapsible">
+    <h2>Single Window, Complex Object Example</h2>
+    <div class="content">
+      <p data-js-markdownit>In this example, a more complex visual object responds to window movement using the same
+        screen-relative mechanic as before. Instead of a single circle, a radial structure made of multiple lines is
+        centered in the window. When the window is moved, the entire object appears to lag behind momentarily—remaining
+        in its original screen position—before easing back into the center. The radial form enhances the impression of
+        physical drag and realignment, making the effect more expressive and visually dynamic.</p>
+      <a class="button mv-xl" href="03-single-window-complex-object-example/index.html">Show the Example</a>
+    </div>
+  </section>
+
+  <section id="multi-window-simple-object-assignment" class="collapsible">
+    <h2>Multi-Window, Simple Object Assignment</h2>
+    <div class="content">
+      <p data-js-markdownit>This assignment explores how a visual element—such as a line—can span across multiple
+        browser windows. The goal is to create the impression of a continuous object that exists beyond the boundaries
+        of a single window. A simple example is a straight line that begins in one window and ends in another.
+      </p>
+
+      <p data-js-markdownit>TTo coordinate this across windows, shared state is required. This can be achieved using a
+        [`SharedWorker`](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker), which enables multiple windows
+        to access and update a common data structure. Alternatively, other core concepts such as `postMessage`,
+        `localStorage`, or `window.opener` can be used, depending on the architectural approach.</p>
+
+      <a class="button mv-xl" href="04-multi-window-simple-object-task/index.html">Tackle the Task</a>
+    </div>
+  </section>
+
+  <section id="multi-window-complex-object-playground" class="collapsible">
+    <h2>Multi-Window, Complex Object Playground</h2>
+    <div class="content">
+      <a class="button mv-xl" href="05-multi-window-complex-object-playground/index.html">Let's Play</a>
+    </div>
+  </section>
+
+  <section id="rotating-circles-playground" class="collapsible">
+    <h2>Rotating Circles Playground</h2>
+    <div class="content">
+      <a class="button mv-xl" href="06-rotating-circles-playground/index.html">Let's Play</a>
+    </div>
+  </section>
 </body>
 
 </html>

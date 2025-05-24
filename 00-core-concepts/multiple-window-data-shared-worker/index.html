@@ -55,7 +55,7 @@
             </td>
           </tr>
           <tr>
-            <td><strong>Client Script</strong><br><code>logic.js</code></td>
+            <td><strong>Client Script</strong><br><code>inline in index.html</code></td>
             <td>
               Loaded by each window.<br>
               Tracks and sends its own screen-related metrics and receives updates from the worker.
@@ -111,23 +111,23 @@
     <section>
       <h2>Provided Functionality</h2>
       <ul>
-        <li>📡 <strong>Real-time broadcasting</strong> of window metrics to all other connected windows</li>
-        <li>🧠 <strong>Centralized state management</strong> for all windows (using IDs)</li>
-        <li>🔁 <strong>Automatic polling</strong> and sync of:
+        <li><strong>Real-time broadcasting</strong> of window metrics to all other connected windows</li>
+        <li><strong>Centralized state management</strong> for all windows (using IDs)</li>
+        <li><strong>Automatic polling</strong> and sync of:
           <ul>
             <li>position (<code>x</code>, <code>y</code>)</li>
             <li>window size (<code>width</code>, <code>height</code>)</li>
             <li>center (<code>centerX</code>, <code>centerY</code>)</li>
           </ul>
         </li>
-        <li>🧭 <strong>Manual querying</strong> of:
+        <li><strong>Manual querying</strong> of:
           <ul>
             <li>own metrics (<code>getMyMetrics</code>)</li>
             <li>others' metrics (<code>getOtherMetrics</code>)</li>
           </ul>
         </li>
-        <li>👁 <strong>UI integration</strong> for displaying and updating live values</li>
-        <li>🔀 <strong>Loose coupling</strong> – windows don't know each other directly, only via shared state</li>
+        <li><strong>UI integration</strong> for displaying and updating live values</li>
+        <li><strong>Loose coupling</strong> – windows don't know each other directly, only via shared state</li>
     </section>
 
 

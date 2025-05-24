@@ -39,8 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
 ############################################################################ */
 
 const addCopyButton = (preBlock) => {
-
-  console.log('Adding copy button to pre block:', preBlock);
   const button = document.createElement('button');
   button.className = 'copy-btn';
   button.textContent = 'Copy';
@@ -78,12 +76,14 @@ const showInFileCode = (codeId, target) => {
     return;
   }
   targetElement.appendChild(preBlockWidthButton);
+
+  hljs.highlightElement(codeBlock);
+  hljs.initLineNumbersOnLoad();
 };
 
 
 /* Fetch and Show Code from external file
 ############################################################################ */
-let highlighted = false;
 
 const fetchAndShowExternalCode = (url, target) => {
   fetch(url)
@@ -105,9 +105,7 @@ const fetchAndShowExternalCode = (url, target) => {
 
       hljs.highlightElement(codeBlock);
       hljs.initLineNumbersOnLoad();
-      highlighted = true;
-
-
+      
       setTimeout(() => {
         const lineNumbers = document.querySelectorAll('.hljs-ln-line .hljs-ln-n');
         const lines = document.querySelectorAll('.hljs-ln-line');
@@ -152,18 +150,13 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.collapsible').forEach(section => {
     const h2 = section.querySelector('h2');
     const originalText = h2.textContent.trim();
-    console.log("Collapsible section found:", originalText);
-    // Erstelle Toggle-Button
     const button = document.createElement('button');
     button.className = 'collapse-toggle';
     button.type = 'button';
     button.innerHTML = `<span class="arrow">▶</span> ${originalText}`;
-
-    // Leere das H2 und füge den Button hinein
     h2.textContent = '';
     h2.appendChild(button);
 
-    // Toggle-Verhalten
     button.addEventListener('click', () => {
       section.classList.toggle('open');
     });
