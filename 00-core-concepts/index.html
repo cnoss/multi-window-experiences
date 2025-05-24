@@ -27,7 +27,9 @@
 <body>
   <header>
     <h1>What are the different concepts and techniques for sharing window position data between browser windows?</h1>
-    <p>In this example, we will explore how to share data between different browser windows.</p>
+    <p class="hero-text" data-js-markdownit>
+      This chapter introduces key concepts and techniques for sharing data between multiple browser windows. It begins with the basics of detecting and observing window positions, then compares several communication approaches including `window.opener`, `postMessage`, `localStorage`, and `SharedWorker`. Each method is explored in terms of use cases, capabilities, and limitations. The chapter concludes with an advanced solution using a `SharedWorker` combined with centralized state management, allowing windows to share spatial data such as position, size, and center point in real time.
+    </p>
   </header>
 
   <section id="window-position" class="collapsible">
@@ -187,7 +189,7 @@
 
       <h3>Comparison Table: Multi-Window Communication Techniques</h3>
 
-      <table>
+      <table class="is-simple">
         <thead>
           <tr>
             <th>Concept</th>
