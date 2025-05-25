@@ -48,9 +48,6 @@
   </header>
 
   <main>
-
-
-
     <section id="casey-reas" class="collapsible">
       <h2>Casey Reas</h2>
       <div class="content">
@@ -101,8 +98,6 @@
     <section id="p5js-basics" class="collapsible">
       <h2>p5.js Basics</h2>
       <div class="content">
-
-
         <div data-js-markdownit>
           **p5.js** is a JavaScript library for creative coding that runs directly in the browser. It uses a simple
           sketch
@@ -128,9 +123,20 @@
           Reference](https://archive.p5js.org/reference/).
         </p>
       </div>
-
     </section>
 
+    <section id="center-canvas" class="collapsible">
+      <h2>Fit Canvas to Screen Size</h2>
+      <div class="content">
+        <div data-js-markdownit>
+          This code adjusts the canvas based on the browser window’s position on the screen, allowing the sketch to stay aligned with the physical screen space. By translating using -window.screenX and -window.screenY, it relates the drawing to the window’s location on the screen — not just the browser viewport. This is useful when multiple windows or screens are involved and you want consistent positioning relative to the actual screen, not just within the browser.
+        </div>
+
+        <div data-js-center-canvas></div>
+
+        <a class="button mv-xl" href="../../10-dot-in-the-middle/index.html">Show Example</a>
+      </div>
+    </section>
 
     <section id="easing" class="collapsible">
       <h2>Easing Functions</h2>
@@ -157,8 +163,10 @@
 
   <script>
     fetchAndShowExternalCode('p5-basic-example.js', '[data-js-basic-example]');
+    fetchAndShowExternalCode('center-canvas.js', '[data-js-center-canvas]');
     fetchAndShowExternalCode('easing-level-1.js', '[data-js-easing-code-example-1]');
     fetchAndShowExternalCode('easing-level-2.js', '[data-js-easing-code-example-2]');
+    
   </script>
 </body>
 

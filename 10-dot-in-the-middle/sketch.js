@@ -8,14 +8,6 @@ https://cnoss.github.io/generative-gestaltung/
 ############################################################################ */
 
 let canvas;
-let follower;
-let velocity;
-
-
-// apply easeOutBack dynamics 
-const stiffness = 0.6;      // how strong the spring pulls
-const damping = 0.8;        // how much the movement is slowed
-const backforce = 0.9;      // "overshoot" factor (more = stronger bounce)
 
 /* ###########################################################################
 Classes
@@ -62,41 +54,27 @@ function setup() {
 }
 
 
-
+let posX, posY;
 
 function draw() {
-  background(0, 0,0, drawingParams.backgroundAlpha);
+  background(0, 0, 0, 100);
 
-  const targetX = window.screenX + window.innerWidth / 2;
-  const targetY = window.screenY + window.innerHeight / 2;
-  const target = createVector(targetX, targetY);
-  const dir = p5.Vector.sub(target, follower);
+  if (drawingParams.context === 'screen') {
+    // Move the origin of the canvas to the top left corner of the screen
+    const originX = -window.screenX;
+    const originY = -window.screenY;
+    canvas.width = screen.width;
+    canvas.height = screen.height;
+    translate(originX, originY);
+    posX = width / 2;
+    posY = height / 2;
 
-  // Move the origin of the canvas to the top left corner of the screen
-  // This is necessary to make the follower move towards the center of the screen
-  const originX = -window.screenX;
-  const originY = -window.screenY;
-  canvas.width = screen.width;
-  canvas.height = screen.height;
-  translate(originX, originY);
+  }else{
+    posX = window.innerWidth / 2;
+    posY = window.innerHeight / 2;
+  }
 
-  // artificial backforce: we scale the pull vector slightly beyond the target
-  dir.mult(backforce);
-
-  // acceleration = pull force
-  const acceleration = dir.mult(stiffness);
-
-  // velocity += acceleration, then apply damping
-  velocity.add(acceleration);
-  velocity.mult(damping);
-
-  // move follower
-  follower.add(velocity);
-
-  // const distance = p5.Vector.dist(follower, target);
-  // ellipse(follower.x, follower.y, distance + 20, distance + 20);
-
-  ellipse(follower.x, follower.y, 20, 20);
+  ellipse(posX, posY, 60, 60);
 
 }
 

@@ -355,6 +355,14 @@ table.is-simple {
   padding-top: 1rem;
   transition: all 0.6s ease;
   margin-top: 5rem;
+
+  &.is-part-of-presentation{
+
+    h2{
+      color: var(--accent-color);
+    }
+    
+  }
 }
 
 .collapsible+.collapsible {
@@ -369,7 +377,6 @@ table.is-simple {
   margin-bottom: 0;
   line-height: 100%;
   transform-origin: left;
-
 }
 
 .collapsible .arrow {
@@ -388,8 +395,6 @@ table.is-simple {
 }
 
 .collapsible.open {
-
-
   .arrow {
     transform: rotate(90deg) scale(0.5);
   }
