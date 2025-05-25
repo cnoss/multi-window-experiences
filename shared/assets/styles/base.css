@@ -425,6 +425,10 @@ table.is-simple {
   margin-bottom: 0.2em;
 }
 
+.pb-0{
+  padding-bottom: 0;
+}
+
 .pt-xl{
   padding-top: 3rem;
 }
