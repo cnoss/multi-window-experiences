@@ -17,7 +17,9 @@
   <title>Core concepts of sharing data between browser windows</title>
 
   <link rel="stylesheet" href="../shared/assets/styles/combined.css">
-
+  <link rel="stylesheet" href="../shared/assets/libs/github.min.css">
+  <script src="../shared/assets/libs/highlight.min.js"></script>
+  <script src="../shared/assets/libs/highlightjs-line-numbers.min.js"></script>
   <script src="../shared/assets/libs/markdown-it.min.js"></script>
   <script src="../shared/assets/scripts/helper.js"></script>
 
@@ -36,6 +38,11 @@
     <h2>Detecting Window Position</h2>
 
     <div class="content">
+
+      <figure class="image">
+        <img src="../shared/images/get-position.png" alt="Detecting Window Position">
+      </figure>
+
       <p>To detect the position of a window, you can use the <code>window.screenX</code> and <code>window.screenY</code>
         properties. These properties return the x and y coordinates of the window on the screen.</p>
       <p>For example, you can log the position of the current window to the console:</p>
@@ -63,7 +70,10 @@
         another way — for instance, by monitoring viewport size, scroll behavior, or window focus/blur events. Let me
         know
         what you're trying to build, and I can help you find a more robust approach.</p>
+      
+      <p>Here's a simple example of how you might implement this:</p>
 
+      <div data-js-observe-window-position> </div>
 
       <p>The window and screen objects in JavaScript offer several useful properties that can help you understand and
         respond to the browser window's behavior or environment—especially if you're working on something related to
@@ -119,6 +129,11 @@
     <h2>Using Opener</h2>
 
     <div class="content">
+
+      <figure class="image">
+        <img src="../shared/images/opener.png" alt="Using Opener">
+      </figure>
+
       <p>The <code>opener</code> property allows a window to reference the window that opened it. This is useful for
         sharing data between windows. For example, if you have a main window that opens a new window, you can use the
         <code>opener</code> property to
@@ -133,6 +148,11 @@
     <h2>Using Broadcast Channel API & PostMessage</h2>
 
     <div class="content">
+
+      <figure class="image">
+        <img src="../shared/images/broadcast-channel.png" alt="Using PostMessage">
+      </figure>
+
       <p data-js-markdownit>The `postMessage` method allows you to send messages between windows. This is useful for
         sharing data
         between windows that are not related (i.e., they do not share the same opener).</p>
@@ -145,6 +165,11 @@
     <h2>Using Local Storage</h2>
 
     <div class="content">
+
+      <figure class="image">
+        <img src="../shared/images/local-storage.png" alt="Using Local Storage">
+      </figure>
+
       <p data-js-markdownit>The `localStorage` object allows you to store data in the browser. This is useful for
         sharing
         data
@@ -159,6 +184,11 @@
     <h2>Using Shared Worker</h2>
 
     <div class="content">
+
+      <figure class="image">
+        <img src="../shared/images/shared-worker.png" alt="Using Shared Worker">
+      </figure>
+      
       <p data-js-markdownit>The `SharedWorker` object allows you to create a worker that can be shared between multiple
         windows. This is useful for sharing data between windows that are not related (i.e., they do not share the same
         opener). The data is **asynchronous** and **string-based** and it doesn’t expire.</p>
@@ -335,7 +365,7 @@
 
   <footer data-js-footer></footer>
 
-  <script>
+  <script id="observe-window-position-example">
     const windowPosition = {
       x: window.screenX,
       y: window.screenY
@@ -355,6 +385,10 @@
 
     const obverveWindowPosition = setInterval(trackWindowPosition, 500);
   </script>
+
+    <script>
+    showInFileCode('observe-window-position-example', '[data-js-observe-window-position]');
+    </script>
 </body>
 
 </html>
