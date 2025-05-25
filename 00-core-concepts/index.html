@@ -16,8 +16,7 @@
 
   <title>Core concepts of sharing data between browser windows</title>
 
-  <link rel="stylesheet" href="../shared/assets/styles/reset.css">
-  <link rel="stylesheet" href="../shared/assets/styles/base.css">
+  <link rel="stylesheet" href="../shared/assets/styles/combined.css">
 
   <script src="../shared/assets/libs/markdown-it.min.js"></script>
   <script src="../shared/assets/scripts/helper.js"></script>
@@ -26,6 +25,7 @@
 
 <body>
   <header>
+    <a href="../"><i class="icon">home</i></a>
     <h1>What are the different concepts and techniques for sharing window position data between browser windows?</h1>
     <p class="hero-text" data-js-markdownit>
       This chapter introduces key concepts and techniques for sharing data between multiple browser windows. It begins with the basics of detecting and observing window positions, then compares several communication approaches including `window.opener`, `postMessage`, `localStorage`, and `SharedWorker`. Each method is explored in terms of use cases, capabilities, and limitations. The chapter concludes with an advanced solution using a `SharedWorker` combined with centralized state management, allowing windows to share spatial data such as position, size, and center point in real time.
@@ -130,7 +130,7 @@
   </section>
 
   <section id="post-message" class="collapsible">
-    <h2>Using PostMessage</h2>
+    <h2>Using Broadcast Channel API & PostMessage</h2>
 
     <div class="content">
       <p data-js-markdownit>The `postMessage` method allows you to send messages between windows. This is useful for

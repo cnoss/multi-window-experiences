@@ -14,8 +14,7 @@
 
   <title>P5.js Basics</title>
 
-  <link rel="stylesheet" href="../shared/assets/styles/reset.css">
-  <link rel="stylesheet" href="../shared/assets/styles/base.css">
+  <link rel="stylesheet" href="../shared/assets/styles/combined.css">
 
   <link rel="stylesheet" href="../shared/assets/libs/github.min.css">
   <script src="../shared/assets/libs/highlight.min.js"></script>
@@ -27,19 +26,15 @@
 
 <body>
   <header>
+    <a href="../"><i class="icon">home</i></a>
     <h1>Working with p5.js</h1>
 
-    <div class="hero-text" data-js-markdownit="">**[p5.js](https://p5js.org/)** is an open-source JavaScript library
+    <div class="hero-text" data-js-markdownit>**[p5.js](https://p5js.org/)** is an open-source JavaScript library
       that brings the core principles of creative coding to the web. It was initiated in 2013 by [Lauren
       McCarthy](https://lauren-mccarthy.com/), an artist and programmer, as a browser-based reinterpretation of
       [Processing](https://processing.org/), the influential visual programming environment developed by [Casey
       Reas](https://reas.com/) and [Ben Fry](https://benfry.com/) at the MIT Media Lab.
-    </div>
-  </header>
 
-  <main>
-
-    <div data-js-markdownit class="section">
       Built with accessibility and inclusivity in mind, p5.js is part of the mission of the [Processing
       Foundation](https://processingfoundation.org/), which supports the development of tools and learning resources
       that
@@ -50,87 +45,112 @@
       foster a global community where code becomes a tool for visual storytelling, experimentation, and cultural
       critique.
     </div>
+  </header>
+
+  <main>
 
 
-    <div data-js-markdownit class="section" id="reas-and-fry">
-      ### Casey Reas // [https://reas.com](https://reas.com)
 
-      Casey Reas is a visual artist, educator, and co-creator of [Processing](https://processing.org/). His work
-      explores
-      the relationship between code and form, often using rule-based systems and generative processes.
+    <section id="casey-reas" class="collapsible">
+      <h2>Casey Reas</h2>
+      <div class="content">
+        <p data-js-markdownit>Casey Reas is a visual artist, educator, and co-creator of
+          [Processing](https://processing.org/).
+          His work explores the relationship between code and form, often using rule-based systems and generative
+          processes.</p>
 
-      #### [Software Structures](https://whitney.org/exhibitions/software-structures)
-      A series of algorithmic drawings inspired by the conceptual art of Sol LeWitt. Each piece is generated from a
-      written instruction, interpreted visually through code.
+        <h3 class="mb-s"><a href="https://whitney.org/exhibitions/software-structures">Software Structures</a></h3>
+        <p data-js-markdownit>A series of algorithmic drawings inspired by the conceptual art of Sol LeWitt. Each piece
+          is
+          generated from a written instruction, interpreted visually through code.</p>
 
-      #### [Signal to Noise](https://www.bitforms.art/artwork/signal-to-noise-software-3-2)
-      Real-time video-based compositions that blur the boundaries between signal (meaningful information) and noise
-      (randomness).
-    </div>
+        <h3 class="mb-s"><a href="https://www.bitforms.art/artwork/signal-to-noise-software-3-2">Signal to Noise</a>
+        </h3>
+        <p data-js-markdownit>Real-time video-based compositions that blur the boundaries between signal (meaningful
+          information) and noise (randomness).</p>
 
-    <div data-js-markdownit class="section">
-      ### Ben Fry // [https://benfry.com](https://benfry.com)
-
-      focuses on data visualization, computational design, and tools for exploring complex datasets.
-
-
-      #### [Genome Viewer (Valence)](https://benfry.com/genomevalence/)
-      A data visualization tool that maps the human genome, created in collaboration with the Broad Institute. It makes
-      large-scale biological data readable and interactive.
-
-      #### [All Streets](https://benfry.com/allstreets/)
-      A map of all the streets in the United States—with no labels, cities, or boundaries. The resulting image reveals
-      patterns of habitation purely through street networks.
-
-      #### [ZIPdecode](https://benfry.com/zipdecode/)
-      An interactive tool that visualizes how ZIP codes in the United States relate to geographic locations, digit by
-      digit.
-    </div>
-
-    <section id="p5js-basics">
-      <h2>p5.js Basics</h2>
-      <div data-js-markdownit>
-        **p5.js** is a JavaScript library for creative coding that runs directly in the browser. It uses a simple sketch
-        structure based on two main functions: [`setup()`](https://p5js.org/reference/#/p5/setup), which runs once at
-        the
-        beginning, and [`draw()`](https://p5js.org/reference/#/p5/draw), which runs continuously like a loop. You can
-        use
-        it to draw shapes, animate visuals, and respond to user input.
-
-        To get started, you can write your code in the [p5.js Web Editor](https://editor.p5js.org/) or include the
-        library
-        in your HTML file.
+        <p><a href="https://reas.com">https://reas.com</a></p>
       </div>
+    </section>
 
-      <p data-js-markdownit>
-        Here's a simple example of a p5.js sketch that draws an ellipse that follows the mouse cursor:
-      </p>
+    <section id="ben-fry" class="collapsible">
+      <h2 data-js-markdownit>Ben Fry</h2>
+      <div class="content">
+        <p data-js-markdownit>Ben Fry focuses on data visualization, computational design, and tools for exploring
+          complex
+          datasets.</p>
 
-      <div data-js-basic-example></div>
+        <h3 class="mb-s"><a href="https://benfry.com/genomevalence/">Genome Viewer (Valence)</a></h3>
+        <p data-js-markdownit>A data visualization tool that maps the human genome, created in collaboration with the
+          Broad
+          Institute. It makes large-scale biological data readable and interactive.</p>
 
-      <p data-js-markdownit>
-        More info and examples are available at the [official p5.js website](https://p5js.org/) or the [p5.js
-        Reference](https://archive.p5js.org/reference/).
-      </p>
+        <h3 class="mb-s"><a href="https://benfry.com/allstreets/">All Streets</a></h3>
+        <p data-js-markdownit>A map of all the streets in the United States—with no labels, cities, or boundaries. The
+          resulting image reveals patterns of habitation purely through street networks.</p>
+
+        <h3 class="mb-s"><a href="https://benfry.com/zipdecode/">ZIPdecode</a></h3>
+        <p data-js-markdownit>An interactive tool that visualizes how ZIP codes in the United States relate to
+          geographic
+          locations, digit by digit.</p>
+
+        <p><a href="https://benfry.com">https://benfry.com</a></p>
+      </div>
+    </section>
+
+    <section id="p5js-basics" class="collapsible">
+      <h2>p5.js Basics</h2>
+      <div class="content">
+
+
+        <div data-js-markdownit>
+          **p5.js** is a JavaScript library for creative coding that runs directly in the browser. It uses a simple
+          sketch
+          structure based on two main functions: [`setup()`](https://p5js.org/reference/#/p5/setup), which runs once at
+          the
+          beginning, and [`draw()`](https://p5js.org/reference/#/p5/draw), which runs continuously like a loop. You can
+          use
+          it to draw shapes, animate visuals, and respond to user input.
+
+          To get started, you can write your code in the [p5.js Web Editor](https://editor.p5js.org/) or include the
+          library
+          in your HTML file.
+        </div>
+
+        <p data-js-markdownit>
+          Here's a simple example of a p5.js sketch that draws an ellipse that follows the mouse cursor:
+        </p>
+
+        <div data-js-basic-example></div>
+
+        <p data-js-markdownit>
+          More info and examples are available at the [official p5.js website](https://p5js.org/) or the [p5.js
+          Reference](https://archive.p5js.org/reference/).
+        </p>
+      </div>
 
     </section>
 
 
-    <section id="easing">
+    <section id="easing" class="collapsible">
       <h2>Easing Functions</h2>
-      <p data-js-markdownit>To create smooth animations, we can use easing functions. These functions control the
-        acceleration and deceleration of an animation, making it feel more natural.</p>
 
-      <h3>Example 1: Basic Easing</h3>
-      <p data-js-markdownit>Here's a simple example of using an easing function in p5.js:</p>
-      <div data-js-easing-code-example-1></div>
+      <div class="content">
+        <p data-js-markdownit>To create smooth animations, we can use easing functions. These functions control the
+          acceleration and deceleration of an animation, making it feel more natural.</p>
 
-      <h3>Example 2: Spring-like Easing</h3>
-      <p data-js-markdownit>Here's a more complex example. This sketch simulates a smooth, spring-like follower that
-        appears to be pulled toward the mouse as if attached by a flexible rubber band. The motion includes a slight
-        overshoot before settling back toward the target, resulting in a natural and organic animation similar to the
-        visual behavior of an easeOutBack curve commonly used in motion design.</p>
-      <div data-js-easing-code-example-2></div>
+        <h3>Example 1: Basic Easing</h3>
+        <p data-js-markdownit>Here's a simple example of using an easing function in p5.js:</p>
+        <div data-js-easing-code-example-1></div>
+
+        <h3>Example 2: Spring-like Easing</h3>
+        <p data-js-markdownit>Here's a more complex example. This sketch simulates a smooth, spring-like follower that
+          appears to be pulled toward the mouse as if attached by a flexible rubber band. The motion includes a slight
+          overshoot before settling back toward the target, resulting in a natural and organic animation similar to the
+          visual behavior of an easeOutBack curve commonly used in motion design.</p>
+        <div data-js-easing-code-example-2></div>
+
+      </div>
 
     </section>
   </main>

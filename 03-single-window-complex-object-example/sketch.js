@@ -111,8 +111,8 @@ function draw() {
     const randomY1 = random(-distance, distance);
     const x1 = cos(angle + skew) * innerRadius1 
     const y1 = sin(angle + skew) * innerRadius2;
-    const x2 = cos(angle) * (outerRadius1 + distance); //+ randomX1;
-    const y2 = sin(angle) * (outerRadius2 + distance); //  + randomY1;
+    const x2 = cos(angle) * (outerRadius1); //+ randomX1;
+    const y2 = sin(angle) * (outerRadius2); //  + randomY1;
     line(x1, y1, x2, y2);
   }
 
