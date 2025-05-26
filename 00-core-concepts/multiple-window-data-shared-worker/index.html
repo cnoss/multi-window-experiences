@@ -38,41 +38,6 @@
   </header>
 
   <main>
-    <section>
-      <h2>Structure</h2>
-      <table class="is-simple">
-        <thead>
-          <tr>
-            <th>Component</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>SharedWorker</strong><br><code>shared-with-csm.js</code></td>
-            <td>
-              Manages centralized state for all windows (metrics per window ID).<br>
-              Handles communication, updates, and queries.
-            </td>
-          </tr>
-          <tr>
-            <td><strong>Client Script</strong><br><code>inline in index.html</code></td>
-            <td>
-              Loaded by each window.<br>
-              Tracks and sends its own screen-related metrics and receives updates from the worker.
-            </td>
-          </tr>
-          <tr>
-            <td><strong>HTML Page</strong><br><code>index.html</code></td>
-            <td>
-              Basic layout with UI elements to trigger updates and display live data (e.g. current and remote window
-              metrics).
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-    </section>
 
     <section>
       <h2>Program Flow</h2>

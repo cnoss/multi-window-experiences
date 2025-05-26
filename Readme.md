@@ -15,12 +15,9 @@ https://cnoss.github.io/slides/presentations/misc/multi-window-with-p5/
 
 ## ToDos
 - HTML validieren
-- Core Concepts: listener fehlt
 - .vscode dateien weg räumen
 - videos einbinden
 - Folien aufräumen
 - Firefox reqeuired
 - meine Dokumentee verlinken
-- Aufgaben machen
-- Home Button einbauen
 - vor- und nachteile der Methoden auf Folien eintragen

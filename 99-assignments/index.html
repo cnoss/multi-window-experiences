@@ -29,9 +29,50 @@
   <header>
     <a href="../"><i class="icon">home</i></a>
     <h1>Assignments</h1>
-    <p class="hero-text" data-js-markdownit>
 
+    <p class="hero-text" data-js-markdownit>
+      Every assignment has its own little home — a self-contained folder where all the magic happens. Inside, you’ll find everything you need: sketch-File, config files and sometimes a SharedWorker pulling the strings behind the scenes. Feel free to jump right in and experiment directly in the folder. Or, if you're the cautious type, make a quick copy before you start breaking things in the best possible way. This setup keeps your ideas tidy and your experiments easy to run, remix, or rescue.
     </p>
+
+    <h2>Typical Folder Structure</h2>
+    <table class="is-reduced">
+      <thead>
+        <tr>
+          <th>File/ Folder</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><i class="icon is-inline">folder</i>assets</th>
+          <td>The assets folder holds static resources used by sketches. No changes required here.</td>
+        </tr>
+        <tr>
+          <th><i class="icon is-inline">description</i>index.html</th>
+          <td>The main HTML file that loads the sketch, GUI, styles, and helper scripts. It includes display areas for
+            window metrics. You don't have to touch the HTML.</td>
+        </tr>
+        <tr>
+          <th><i class="icon is-inline">description</i>sketch.js</th>
+          <td>The main p5.js sketch. It renders the visual element and controls whether this window should display it,
+            based on overlap detection. Work is being done here 🏋</td>
+        </tr>
+        <tr>
+          <th><i class="icon is-inline">description</i>config.js</th>
+          <td>Configuration file containing drawing parameters, color settings, and toggles. If you want to add or change drawing paramenter (UI on the top left) you have to make it here.</td>
+        </tr>
+        <tr>
+          <th><i class="icon is-inline">description</i>interaction-helper.js</th>
+          <td>Provides utility functions for tracking window metrics and detecting overlap. Manages communication logic
+            and geometry calculations. There is no need for changes.</td>
+        </tr>
+        <tr>
+          <th><i class="icon is-inline">description</i>multiple-window-data-shared-worker.js</th>
+          <td>The SharedWorker script that stores and distributes window metrics. Enables inter-window coordination and
+            centralized state.</td>
+        </tr>
+      </tbody>
+    </table>
   </header>
 
   <section id="share-data" class="collapsible is-assignment">
