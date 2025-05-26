@@ -23,3 +23,4 @@ https://github.com/bgstaal/multipleWindow3dScene
 - Aufgaben machen
 - Home Button einbauen
 - vor- und nachteile der Methoden auf Folien eintragen
+- Ordnerstruktur erklären

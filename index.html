@@ -86,38 +86,36 @@
     </div>
   </section>
 
-  <section id="multi-window-simple-object-assignment" class="collapsible">
-    <h2>Multi-Window, Simple Object Assignment</h2>
+  <section id="multi-window-simple-object-example" class="collapsible">
+    <h2>Multi-Window, Simple Object Example</h2>
     <div class="content">
-      <p data-js-markdownit>This assignment explores how a visual element—such as a line—can span across multiple
-        browser windows. The goal is to create the impression of a continuous object that exists beyond the boundaries
-        of a single window. A simple example is a straight line that begins in one window and ends in another.
+      <p data-js-markdownit>In this example a line spans across two browser windows. The line connects the
+        center points of the two windows, creating a visual link between them. This demonstrates how to share data
+        between multiple browser windows and use it to create a simple visual representation of the relationship
+        between the windows.
       </p>
 
-      <p data-js-markdownit>TTo coordinate this across windows, shared state is required. This can be achieved using a
-        [`SharedWorker`](https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker), which enables multiple windows
-        to access and update a common data structure. Alternatively, other core concepts such as `postMessage`,
-        `localStorage`, or `window.opener` can be used, depending on the architectural approach.</p>
-
-      <a class="button mv-xl" href="04-multi-window-simple-object-task/index.html">Tackle the Task</a>
+      <a class="button mv-xl" href="04-multi-window-simple-object-example/index.html">Show the Example</a>
     </div>
   </section>
 
-  <section id="multi-window-complex-object-playground" class="collapsible">
-    <h2>Multi-Window, Complex Object Playground</h2>
+  <section id="multi-window-complex-object-example" class="collapsible">
+    <h2>Multi-Window, Complex Object Example</h2>
     <div class="content">
-      <a class="button mv-xl" href="05-multi-window-complex-object-playground/index.html">Let's Play</a>
+      <p>This sketch creates a radial network of animated lines that visually connect the center of one window to the center of another. Each segment is defined by layered strokes, colors in motion, and dynamic skewing. As the windows move, the geometry shifts, weaving together screen space into a single shared structure. The result is a living pattern that spans across multiple views—fragmented but visually continuous.</p>
+      <a class="button mv-xl" href="05-multi-window-complex-object-example/index.html">Let's Play</a>
     </div>
   </section>
 
-  <section id="rotating-circles-playground" class="collapsible">
-    <h2>Rotating Circles Playground</h2>
+  <section id="rotating-circles-example" class="collapsible">
+    <h2>Rotating Circles Example</h2>
     <div class="content">
-      <a class="button mv-xl" href="06-rotating-circles-playground/index.html">Let's Play</a>
+      <p>This sketch visualizes the relationship between two windows through rotating, noise-infused radial structures. Each window’s shape orients itself toward the other, creating a sense of attention and awareness across screen space. As the distance between windows changes, the form stretches and shifts, enhanced by subtle noise and color gradients. The result is a living, directional figure that constantly re-aligns as windows move, rotate, and drift apart.</p>
+      <a class="button mv-xl" href="06-rotating-circles-example/index.html">Let's Play</a>
     </div>
   </section>
 
-  <section id="centered-dot" class="collapsible is-part-of-presentation">
+  <section id="centered-dot" class="collapsible">
     <h2>Centered Dot Example</h2>
     <div class="content">
       <p data-js-markdownit>This example demonstrates how a simple dot can be centered in the middle of the screen. The dot remains in the center even when the window is resized or moved.</p>
@@ -126,6 +124,14 @@
         This code adjusts the canvas based on the browser window’s position on the screen, allowing the sketch to stay aligned with the physical screen space. By translating using -window.screenX and -window.screenY, it relates the drawing to the window’s location on the screen — not just the browser viewport. This is useful when multiple windows or screens are involved and you want consistent positioning relative to the actual screen, not just within the browser.
       </p>
       <a class="button mv-xl" href="10-dot-in-the-middle/index.html">Show Example</a>
+    </div>
+  </section>
+
+  <section id="assignments" class="collapsible is-assignment">
+    <h2>Assignments</h2>
+    <div class="content">
+      <p data-js-markdownit>In this section, you will find various assignments that challenge you to apply the concepts learned in the workshop. Each assignment focuses on different aspects of multi-window experiences with p5.js, encouraging you to experiment and create interactive visualizations.</p>
+      <a class="button mv-xl" href="./99-assignments/">Let's go</a>
     </div>
   </section>
 
@@ -143,6 +149,7 @@
       <p><strong>have fun 😎</strong></p>
 
     </div>
+  </section>
 </body>
 
 </html>

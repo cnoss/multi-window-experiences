@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Explore different concepts and techniques for sharing data between browser windows, including window position detection, opener, postMessage, localStorage, and SharedWorker.">
+  <meta name="keywords"
+    content="browser windows, data sharing, window position, opener, postMessage, localStorage, SharedWorker, central state management">
+  <meta name="author" content="Christian Noss - https://christiannoss.de">
+
+  <link rel="icon" href="../shared/assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="../shared/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../shared/assets/manifest.json">
+
+  <title>Assignments</title>
+
+  <link rel="stylesheet" href="../shared/assets/styles/combined.css">
+  <link rel="stylesheet" href="../shared/assets/libs/github.min.css">
+  <script src="../shared/assets/libs/highlight.min.js"></script>
+  <script src="../shared/assets/libs/highlightjs-line-numbers.min.js"></script>
+  <script src="../shared/assets/libs/markdown-it.min.js"></script>
+  <script src="../shared/assets/scripts/helper.js"></script>
+
+</head>
+
+<body>
+  <header>
+    <a href="../"><i class="icon">home</i></a>
+    <h1>Assignments</h1>
+    <p class="hero-text" data-js-markdownit>
+
+    </p>
+  </header>
+
+  <section id="share-data" class="collapsible is-assignment">
+    <h2>01. Share Data between Windows</h2>
+
+    <div class="content">
+
+      <div data-js-markdownit="">
+        **Objective:**
+        Use one or more of the core communication techniques (e.g. `window.opener`, `postMessage`, `localStorage`,
+        `BroadcastChannel`, or `SharedWorker`) to share position data between two browser windows.
+
+        **Task:**
+        You are given a starter file with a code skeleton. Your job is to implement a working communication
+        channel that allows each window to display:
+
+        * Its **own position** (based on `window.screenX` / `screenY`)
+        * The **position of the other window(s)**
+
+        Use the concepts and techniques discussed in workshop to send and receive this data. Feel free to choose an
+        approach that makes
+        sense to you. Bonus: if you try more than one and compare the results.
+
+        **Hints:**
+
+        * Use `setInterval()` to track and send position changes regularly
+        * Store or transmit positions as a simple object: `{ position.x: ..., position.y: ... }`
+
+        **Optional Challenge:**
+        Make the update reactive (e.g. use the `storage` event or `BroadcastChannel.onmessage`) instead of relying on
+        polling.
+
+        **Time limit:** 30 minutes
+
+        ```
+        99-assignments/01-share-data-between-windows
+        ```
+
+      </div>
+      <a class="button mv-xl" href="./01-share-data-between-windows/index.html">Tackle the Task</a>
+    </div>
+  </section>
+
+  <section id="draw-line-between-windows" class="collapsible is-assignment">
+    <h2>02. Draw Line between Windows</h2>
+
+    <div class="content">
+      <div data-js-markdownit="">
+        **Objective:**
+        Using p5.js and a predefined SharedWorker, draw a line between two browser windows. The line should connect the
+        **center of your current window** to the **center of the other connected window**. The visual goal is to give
+        the impression of a single, shared canvas that spans across both windows.
+
+        **Task:**
+        You are given a code skeleton and a working `SharedWorker` that handles metric exchange between connected
+        windows. Extend the p5 sketch so that a line is drawn from **your own center** to **the other window’s center**.
+
+        **Optional Challenges:**
+        - color of the line depends on the position of the window
+        - thickness of the line depends on the distance between the windows
+        - add easing so the line endpoint smoothly follows the movement of the other window’s center.
+
+        **Time limit:** 20 minutes
+      </div>
+
+      <h3 class="mb-s">Easy Version</h3>
+      <p class="mb-s">This version comes with a lot of predefined code. This makes it ideal for people who want to
+        experiment a little.</p>
+      <div data-js-markdownit="">
+        ```
+        99-assignments/02-draw-line-between-windows-easy
+        ```
+      </div>
+      <a class="button mb-s" href="./02-draw-line-between-windows-easy/index.html">Let's play</a>
+
+      <h3 class="mb-s">Hard Version</h3>
+      <p class="mb-s">Full communication with shared workers still needs to be integrated here. This is no problem for
+        professionals.</p>
+      <div data-js-markdownit="">
+        ```
+        99-assignments/02-draw-line-between-windows-hard
+        ```
+      </div>
+      <a class="button mb-xl" href="./02-draw-line-between-windows-hard/index.html">Bring it on!</a>
+    </div>
+
+  </section>
+
+  <section id="share-data" class="collapsible is-assignment">
+    <h2>03. Dual-Window Visualization Experiment</h2>
+
+    <div class="content">
+
+      <div data-js-markdownit="">
+        **Objective:**
+        Explore the creative possibilities of multi-window visual composition. Build on the provided radial line sketch
+        and extend it to create an expressive, dynamic visualization that spans two browser windows.
+
+        **Task:**
+        You are given a starter sketch with a radial arrangement of lines in one window. Your job is to turn this into
+        an **interactive or generative visual system** that lives across two windows. You can expand, distort, animate,
+        or synchronize elements between the windows—anything that reacts or communicates across the boundary.
+
+        This is not about perfect alignment, but about experimenting with form, connection, and coordination.
+
+        **Suggestions (not required):**
+
+        * Use shared metrics (position, size, center) to distort the visual depending on where the other window is
+        * Create symmetry, mirroring, or interaction between radial elements across both windows
+        * Animate elements in one window based on what happens in the other (e.g. movement, time, alignment)
+        * Use easing, color changes, or layout shifts to respond to distance or position
+
+        **Time limit:** 30 min
+
+        ```
+        99-assignments/03-dual-window-visualization-experiment
+        ```
+
+
+      </div>
+      <a class="button mv-xl" href="./03-dual-window-visualization-experiment/index.html">Let's play</a>
+    </div>
+  </section>
+
+  <section id="share-data" class="collapsible is-assignment">
+    <h2>04. Casting – Visual Handoff Between Windows</h2>
+
+    <div class="content">
+
+      <div data-js-markdownit="">
+        **Objective:**
+        Create a shared visual system where a graphic element (or entire visualization) “moves” from one window to
+        another when the windows overlap. The goal is to simulate a kind of *casting* or *transfer* of responsibility
+        between two browser windows.
+
+        **Task:**
+        You are given a starter sketch with a simple visual and a functioning SharedWorker. Extend it so that:
+        * When two windows **visibly overlap** on the screen, the visual **moves to the other window**
+        * The system feels like the visual is being *passed* from one window to the next
+
+        You’ll need to:
+        * Continuously track each window’s screen position and size
+        * Detect when bounding boxes of windows intersect
+        * Decide which window is currently “hosting” the visualization
+        * Use the SharedWorker to broadcast and synchronize handoff state
+
+        **Time limit:** 30 min
+
+        ```
+        99-assignments/04-visual-handoff-between-windows
+        ```
+      </div>
+      <a class="button mv-xl" href="./04-visual-handoff-between-windows/index.html">Let's play</a>
+    </div>
+  </section>
+
+  <script>
+    // showInFileCode('observe-window-position-example', '[data-js-observe-window-position]');
+  </script>
+</body>
+
+</html>

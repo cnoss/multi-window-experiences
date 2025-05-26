@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="../../shared/assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="../../shared/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../../shared/assets/manifest.json">
+
+  <title>Assignment: Share Data between Window</title>
+
+  <link rel="stylesheet" href="../../shared/assets/styles/combined.css">
+  <link rel="stylesheet" href="../../shared/assets/libs/github.min.css">
+  <script src="../../shared/assets/libs/highlight.min.js"></script>
+  <script src="../../shared/assets/libs/highlightjs-line-numbers.min.js"></script>
+  <script src="../../shared/assets/libs/markdown-it.min.js"></script>
+  <script src="../../shared/assets/scripts/helper.js"></script>
+  <script src="../../shared/assets/scripts/assignment-helper.js"></script>
+</head>
+
+<body>
+  <header>
+    <a href="../../"><i class="icon">home</i></a>
+    <h1>Share Data between Window Assignment</h1>
+  </header>
+
+  <div class="section">
+    <div data-js-code-example></div>
+  </div>
+
+  <footer class="has-grid">
+    <div>
+      <strong>Me</strong>
+      <div data-js-my-position></div>
+    </div>
+
+    <div>
+      <strong>Other</strong>
+      <div data-js-other-position></div>
+    </div>
+  </footer>
+
+  <script id="observe-window-position">
+    // ########################################################################
+    // Provide your own implementation below
+
+
+    const myWindowPosition = {
+      x: false,
+      y: false
+    }
+
+    // Function to update position in the UI
+    updatePositionInUI('data-js-my-position', myWindowPosition);
+
+
+    // ########################################################################
+    
+  </script>
+
+  <script>
+    // Show the code example in the UI
+    showInFileCode('observe-window-position', '[data-js-code-example]');
+  </script>
+
+</body>
+
+</html>
