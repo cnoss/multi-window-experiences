@@ -1,4 +1,5 @@
 https://github.com/bgstaal/multipleWindow3dScene
+https://cnoss.github.io/slides/presentations/misc/multi-window-with-p5/
 
 ## Vorüberlgungen
 - nah am Standard, so wenig Abängihkeiten wie möglich, zumindest im kern.
@@ -23,4 +24,3 @@ https://github.com/bgstaal/multipleWindow3dScene
 - Aufgaben machen
 - Home Button einbauen
 - vor- und nachteile der Methoden auf Folien eintragen
-- Ordnerstruktur erklären
