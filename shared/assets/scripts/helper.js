@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const button = document.createElement('button');
     button.className = 'collapse-toggle';
     button.type = 'button';
-    button.innerHTML = `<span class="arrow">▶</span> ${originalText}`;
+    button.innerHTML = `<span class="arrow icon">chevron_right</span> ${originalText}`;
     h2.textContent = '';
     h2.appendChild(button);
 

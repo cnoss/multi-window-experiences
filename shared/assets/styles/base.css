@@ -270,6 +270,10 @@ pre {
   padding-top: 2em;
 }
 
+code *::selection {
+  background-color: #F5EAAE !important;
+}
+
 .copy-btn {
   position: absolute;
   top: 0.5em;
@@ -409,7 +413,7 @@ table.is-reduced {
 .collapsible .arrow {
   transition: transform 0.3s ease;
   display: inline-block;
-  transform: scale(0.5);
+  
 }
 
 .collapsible .content {
@@ -423,7 +427,7 @@ table.is-reduced {
 
 .collapsible.open {
   .arrow {
-    transform: rotate(90deg) scale(0.5);
+    transform: rotate(90deg);
   }
 
   .content {
