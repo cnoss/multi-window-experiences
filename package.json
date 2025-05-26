@@ -1,0 +1,26 @@
+{
+  "name": "multi-window-experiences",
+  "version": "1.0.0",
+  "description": "Multi-Window Experiences with p5.js is a workshop about creating synchronized visuals across multiple browser windows. It teaches how to detect window positions and share data in real time using tools like postMessage and SharedWorker.",
+  "keywords": [
+    "p5.js"
+  ],
+  "homepage": "https://github.com/cnoss/multi-window-experiences#readme",
+  "bugs": {
+    "url": "https://github.com/cnoss/multi-window-experiences/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cnoss/multi-window-experiences.git"
+  },
+  "license": "ISC",
+  "author": "Christian Noss",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+     "start": "browser-sync start --server --files '**/*' --no-notify"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.4"
+  }
+}
